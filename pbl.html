@@ -1,0 +1,1170 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>重生之我是神经科规培生：搞定小丽先生大作战</title>
+  <!-- 引入 Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- 引入圆润易读的中文字体 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@500;700;900&family=ZCOOL+KuaiLe&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg-cream: #FFFDF6;
+      --card-white: #FFFFFF;
+      --mint-primary: #6BC5B8;
+      --mint-dark: #3B8EA5;
+      --coral-accent: #F48B7B;
+      --yellow-warm: #FFD97D;
+      --text-dark: #2D2624;
+    }
+
+    * {
+      box-sizing: border-box;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg-cream);
+      background-image: 
+        radial-gradient(#E8E2CE 1.5px, transparent 1.5px), 
+        radial-gradient(#F3EDE0 1.5px, #FFFDF6 1.5px);
+      background-size: 40px 40px;
+      background-position: 0 0, 20px 20px;
+      font-family: 'Noto Sans SC', sans-serif;
+      color: var(--text-dark);
+      overflow-x: hidden;
+    }
+
+    /* 日式插画风卡片阴影与粗描边 */
+    .irasuto-card {
+      background: #FFFFFF;
+      border: 4px solid #4A403A;
+      border-radius: 28px;
+      box-shadow: 0 10px 0 #E5DEC9, 0 16px 28px rgba(74, 64, 58, 0.1);
+    }
+
+    .irasuto-subcard {
+      border: 3px solid #4A403A;
+      border-radius: 22px;
+      box-shadow: 0 6px 0 rgba(74, 64, 58, 0.14);
+    }
+
+    /* 选项大按钮样式 */
+    .option-btn {
+      background: #FFFFFF;
+      border: 3.5px solid #4A403A;
+      border-radius: 20px;
+      box-shadow: 0 6px 0 #4A403A;
+      transition: all 0.16s cubic-bezier(0.34, 1.56, 0.64, 1);
+      cursor: pointer;
+    }
+
+    .option-btn:hover {
+      transform: translateY(-4px) scale(1.01);
+      box-shadow: 0 10px 0 #4A403A;
+      background-color: #FFF9E6;
+    }
+
+    .option-btn:active {
+      transform: translateY(3px);
+      box-shadow: 0 2px 0 #4A403A;
+    }
+
+    /* 通用主按钮 */
+    .action-btn {
+      border: 4px solid #4A403A;
+      border-radius: 999px;
+      box-shadow: 0 7px 0 #4A403A;
+      transition: all 0.18s cubic-bezier(0.34, 1.56, 0.64, 1);
+      cursor: pointer;
+    }
+
+    .action-btn:hover {
+      transform: translateY(-4px) scale(1.04);
+      box-shadow: 0 11px 0 #4A403A;
+    }
+
+    .action-btn:active {
+      transform: translateY(3px);
+      box-shadow: 0 3px 0 #4A403A;
+    }
+
+    /* 漂浮小装饰动画 */
+    @keyframes floatSlow {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-16px) rotate(6deg); }
+    }
+
+    @keyframes floatReverse {
+      0%, 100% { transform: translateY(0px) rotate(0deg) scale(1); }
+      50% { transform: translateY(14px) rotate(-8deg) scale(1.06); }
+    }
+
+    @keyframes wigglePulse {
+      0%, 100% { transform: rotate(-4deg) scale(1); }
+      50% { transform: rotate(4deg) scale(1.08); }
+    }
+
+    @keyframes runDoctor {
+      0%, 100% { transform: translateY(0px) rotate(-2deg); }
+      25% { transform: translateY(-12px) rotate(2deg); }
+      50% { transform: translateY(0px) rotate(-2deg); }
+      75% { transform: translateY(-10px) rotate(3deg); }
+    }
+
+    @keyframes popIn {
+      0% { transform: scale(0.5); opacity: 0; }
+      70% { transform: scale(1.06); opacity: 1; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    @keyframes shakeError {
+      0%, 100% { transform: translateX(0); }
+      20% { transform: translateX(-14px) rotate(-2deg); }
+      40% { transform: translateX(14px) rotate(2deg); }
+      60% { transform: translateX(-10px) rotate(-1deg); }
+      80% { transform: translateX(10px) rotate(1deg); }
+    }
+
+    .anim-float-1 { animation: floatSlow 3.6s ease-in-out infinite; }
+    .anim-float-2 { animation: floatReverse 4.2s ease-in-out infinite; }
+    .anim-wiggle { animation: wigglePulse 2.4s ease-in-out infinite; }
+    .anim-run { animation: runDoctor 0.9s ease-in-out infinite; }
+    .anim-pop { animation: popIn 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; }
+    .anim-shake { animation: shakeError 0.45s ease-in-out forwards; }
+
+    /* 5秒倒计时进度条动画 */
+    @keyframes countdownShrink {
+      from { width: 100%; }
+      to { width: 0%; }
+    }
+
+    .countdown-bar-fill {
+      animation: countdownShrink 5s linear forwards;
+    }
+
+    /* 纸屑飘落动画 */
+    @keyframes confettiFall {
+      0% { transform: translateY(-20px) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(750px) rotate(720deg); opacity: 0.2; }
+    }
+
+    .confetti-piece {
+      position: absolute;
+      top: -20px;
+      pointer-events: none;
+      animation: confettiFall 4.2s linear infinite;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between relative">
+
+  <!-- 全局 SVG 滤镜与日本小人（Irasutoya）腮红渐变定义 -->
+  <svg width="0" height="0" class="absolute">
+    <defs>
+      <!-- 标志性日式插画柔化腮红 -->
+      <radialGradient id="irasutoBlush" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#FF7B7B" stop-opacity="0.65" />
+        <stop offset="70%" stop-color="#FF9E9E" stop-opacity="0.25" />
+        <stop offset="100%" stop-color="#FF9E9E" stop-opacity="0" />
+      </radialGradient>
+      <!-- 额头流汗渐变 -->
+      <linearGradient id="sweatBlue" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stop-color="#B3E5FC" stop-opacity="0.85" />
+        <stop offset="100%" stop-color="#E1F5FE" stop-opacity="0" />
+      </linearGradient>
+    </defs>
+  </svg>
+
+  <!-- 周围动态漂浮的日式医疗小装饰（全程自动漂浮） -->
+  <div class="fixed inset-0 pointer-events-none overflow-hidden z-0">
+    <!-- 左上：红白小胶囊 -->
+    <div class="absolute top-6 left-8 anim-float-1 opacity-85">
+      <svg width="68" height="68" viewBox="0 0 80 80">
+        <g transform="rotate(-28 40 40)">
+          <rect x="24" y="12" width="32" height="56" rx="16" fill="#FFFFFF" stroke="#4A403A" stroke-width="3.5"/>
+          <path d="M24 40 H56 V28 A16 16 0 0 0 24 28 Z" fill="#F48B7B" stroke="#4A403A" stroke-width="3.5"/>
+          <line x1="30" y1="24" x2="30" y2="34" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round"/>
+        </g>
+      </svg>
+    </div>
+
+    <!-- 右上：日式小救护车 -->
+    <div class="absolute top-16 right-10 anim-float-2 opacity-85">
+      <svg width="86" height="68" viewBox="0 0 110 85">
+        <rect x="12" y="22" width="84" height="46" rx="12" fill="#FFFFFF" stroke="#4A403A" stroke-width="3.5"/>
+        <path d="M12 45 H38 V22 H24 Q12 22 12 34 Z" fill="#B3E5FC" stroke="#4A403A" stroke-width="3.5"/>
+        <rect x="46" y="13" width="18" height="9" rx="4" fill="#F44336" stroke="#4A403A" stroke-width="3"/>
+        <rect x="12" y="52" width="84" height="6" fill="#F44336"/>
+        <!-- 红十字 -->
+        <rect x="64" y="29" width="6" height="18" rx="2" fill="#F44336"/>
+        <rect x="58" y="35" width="18" height="6" rx="2" fill="#F44336"/>
+        <!-- 轮子 -->
+        <circle cx="32" cy="68" r="10" fill="#4A403A"/>
+        <circle cx="32" cy="68" r="4" fill="#FFF"/>
+        <circle cx="76" cy="68" r="10" fill="#4A403A"/>
+        <circle cx="76" cy="68" r="4" fill="#FFF"/>
+      </svg>
+    </div>
+
+    <!-- 左下：日式听诊器与安心爱心 -->
+    <div class="absolute bottom-8 left-10 anim-wiggle opacity-85">
+      <svg width="82" height="82" viewBox="0 0 90 90">
+        <path d="M45 78 C20 62 12 42 12 26 C12 14 22 8 32 8 C39 8 43 13 45 18 C47 13 51 8 58 8 C68 8 78 14 78 26 C78 42 70 62 45 78 Z" fill="#F48B7B" stroke="#4A403A" stroke-width="3.5"/>
+        <rect x="41" y="28" width="8" height="26" rx="3" fill="#FFFFFF"/>
+        <rect x="32" y="37" width="26" height="8" rx="3" fill="#FFFFFF"/>
+      </svg>
+    </div>
+
+    <!-- 右下：脑脊液点滴袋 -->
+    <div class="absolute bottom-12 right-12 anim-float-1 opacity-85">
+      <svg width="72" height="88" viewBox="0 0 80 100">
+        <rect x="18" y="14" width="44" height="62" rx="10" fill="#E8F6F8" stroke="#4A403A" stroke-width="3.5"/>
+        <rect x="22" y="32" width="36" height="38" rx="6" fill="#81D4FA"/>
+        <line x1="28" y1="38" x2="36" y2="38" stroke="#4A403A" stroke-width="2.5" stroke-linecap="round"/>
+        <line x1="28" y1="48" x2="36" y2="48" stroke="#4A403A" stroke-width="2.5" stroke-linecap="round"/>
+        <line x1="28" y1="58" x2="36" y2="58" stroke="#4A403A" stroke-width="2.5" stroke-linecap="round"/>
+        <path d="M40 14 V5" stroke="#4A403A" stroke-width="3.5" stroke-linecap="round"/>
+        <path d="M40 76 V94" stroke="#4A403A" stroke-width="3.5" stroke-linecap="round"/>
+      </svg>
+    </div>
+  </div>
+
+  <!-- 顶部状态栏（医学生身份 & 家属信任度 & 刘主任血压） -->
+  <header class="relative z-10 w-full max-w-6xl mx-auto pt-4 px-6">
+    <div class="irasuto-card px-6 py-3.5 flex flex-wrap items-center justify-between gap-4 bg-white">
+      <!-- 左侧：当前身份与关卡进度 -->
+      <div class="flex items-center gap-3">
+        <span class="px-4 py-1.5 rounded-full bg-[#E3F4F6] border-2 border-[#4A403A] text-xl font-black text-[#2B6777]">
+          🩺 神经科规培生
+        </span>
+        <span id="stageBadge" class="px-4 py-1.5 rounded-full bg-[#FFF3CD] border-2 border-[#4A403A] text-xl font-black text-[#85581A]">
+          📖 课前病历交班
+        </span>
+      </div>
+
+      <!-- 中间：双血条（家属信任度 & 刘主任血压） -->
+      <div class="flex items-center gap-6 flex-wrap">
+        <!-- 家属信任度 -->
+        <div class="flex items-center gap-2.5">
+          <span class="text-xl font-black text-[#4A403A]">❤️ 家属信任度</span>
+          <div class="w-36 h-6 bg-[#F3ECE1] rounded-full border-2 border-[#4A403A] overflow-hidden p-0.5">
+            <div id="trustBar" class="h-full bg-[#F48B7B] rounded-full transition-all duration-500" style="width: 25%;"></div>
+          </div>
+          <span id="trustText" class="text-xl font-black text-[#D9534F]">25%</span>
+        </div>
+
+        <!-- 刘主任血压 -->
+        <div class="flex items-center gap-2.5">
+          <span class="text-xl font-black text-[#4A403A]">💢 刘主任血压</span>
+          <div class="w-32 h-6 bg-[#F3ECE1] rounded-full border-2 border-[#4A403A] overflow-hidden p-0.5">
+            <div id="bpBar" class="h-full bg-[#6BC5B8] rounded-full transition-all duration-300" style="width: 20%;"></div>
+          </div>
+          <span id="bpText" class="text-xl font-black text-[#2E7D32]">120/80</span>
+        </div>
+      </div>
+
+      <!-- 右侧：音效开关与重置按钮 -->
+      <div class="flex items-center gap-2">
+        <button id="soundToggleBtn" onclick="toggleSound()" class="px-3.5 py-1.5 rounded-xl bg-[#F8F5EC] border-2 border-[#4A403A] text-lg font-bold hover:bg-[#EFE9D8] transition" title="开关互动音效">
+          🔊 音效: 开
+        </button>
+        <button onclick="goToScreen(0)" class="px-3.5 py-1.5 rounded-xl bg-[#F8F5EC] border-2 border-[#4A403A] text-lg font-bold hover:bg-[#EFE9D8] transition" title="回到第一页">
+          🔄 重来
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- 主互动舞台（共 4 个核心交互画面：1页身份介绍 + 3页闯关 + 1页出科结算） -->
+  <main class="relative z-10 flex-grow flex items-center justify-center w-full max-w-6xl mx-auto px-6 py-4">
+
+    <!-- ==================== 画面 0：身份介绍页 ==================== -->
+    <section id="screen-0" class="w-full irasuto-card p-8 md:p-10 relative overflow-hidden">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        
+        <!-- 左侧：日本小人插画组合（规培生 + 满头大汗的小丽先生 + 病床上的小丽） -->
+        <div class="lg:col-span-5 flex flex-col items-center justify-center bg-[#F4FBF9] irasuto-subcard p-6 relative">
+          <div class="absolute top-3 left-3 bg-[#FFE599] border-2 border-[#4A403A] px-3 py-1 rounded-full text-lg font-black">
+            📍 神经内科急会诊病房
+          </div>
+          
+          <!-- 日本小人 Irasutoya 风格组合插画 -->
+          <svg class="w-full max-w-[340px] h-auto mt-6" viewBox="0 0 360 290">
+            <!-- 1. 背景：躺在病床上挂点滴的小丽 -->
+            <g transform="translate(185, 15)">
+              <!-- 输液架与脑脊液关联点滴 -->
+              <line x1="145" y1="10" x2="145" y2="125" stroke="#78909C" stroke-width="4" stroke-linecap="round"/>
+              <line x1="130" y1="10" x2="160" y2="10" stroke="#78909C" stroke-width="4" stroke-linecap="round"/>
+              <rect x="122" y="16" width="20" height="28" rx="4" fill="#B3E5FC" stroke="#4A403A" stroke-width="2.5"/>
+              <!-- 病床 -->
+              <rect x="0" y="55" width="135" height="75" rx="12" fill="#FFFFFF" stroke="#4A403A" stroke-width="3"/>
+              <!-- 枕头 -->
+              <rect x="28" y="38" width="78" height="28" rx="10" fill="#FFF9C4" stroke="#4A403A" stroke-width="2.5"/>
+              <!-- 小丽的脸（发烧冰袋+痛苦表情） -->
+              <circle cx="67" cy="52" r="24" fill="#FFE0BD" stroke="#4A403A" stroke-width="2.8"/>
+              <path d="M43 48 Q67 24 91 48 Q91 32 67 28 Q43 32 43 48 Z" fill="#3E2723" stroke="#4A403A" stroke-width="2.5"/>
+              <!-- 额头冰袋 -->
+              <rect x="49" y="24" width="36" height="13" rx="5" fill="#81D4FA" stroke="#4A403A" stroke-width="2.5"/>
+              <!-- 腮红与紧闭眼睛 -->
+              <circle cx="54" cy="56" r="7" fill="url(#irasutoBlush)"/>
+              <circle cx="80" cy="56" r="7" fill="url(#irasutoBlush)"/>
+              <path d="M55 49 L61 52 L55 55" fill="none" stroke="#4A403A" stroke-width="2.5" stroke-linecap="round"/>
+              <path d="M79 49 L73 52 L79 55" fill="none" stroke="#4A403A" stroke-width="2.5" stroke-linecap="round"/>
+              <!-- 被子 -->
+              <rect x="10" y="72" width="115" height="52" rx="8" fill="#F8BBD0" stroke="#4A403A" stroke-width="2.8"/>
+              <text x="67" y="104" text-anchor="middle" font-size="15" font-weight="900" fill="#4A403A">患者：小丽(28岁)</text>
+            </g>
+
+            <!-- 2. 左前：拿着病历夹的你（神经科规培生） -->
+            <g transform="translate(15, 65)">
+              <!-- 白大褂身体 -->
+              <path d="M32 115 Q75 105 118 115 L126 215 L24 215 Z" fill="#FFFFFF" stroke="#4A403A" stroke-width="3.5"/>
+              <!-- 内搭衬衫与领带 -->
+              <polygon points="62,115 88,115 75,152" fill="#E3F2FD" stroke="#4A403A" stroke-width="2.5"/>
+              <polygon points="71,122 79,122 81,150 75,158 69,150" fill="#3B8EA5"/>
+              <!-- 白大褂翻领 -->
+              <polyline points="55,115 68,158 75,152" fill="none" stroke="#4A403A" stroke-width="3"/>
+              <polyline points="95,115 82,158 75,152" fill="none" stroke="#4A403A" stroke-width="3"/>
+              <!-- 听诊器挂脖 -->
+              <path d="M50 118 Q42 155 58 165" fill="none" stroke="#546E7A" stroke-width="4" stroke-linecap="round"/>
+              <circle cx="59" cy="166" r="7" fill="#CFD8DC" stroke="#4A403A" stroke-width="2.5"/>
+              <!-- 圆润脑袋 -->
+              <circle cx="75" cy="68" r="44" fill="#FFE0BD" stroke="#4A403A" stroke-width="3.5"/>
+              <!-- 日式发型 -->
+              <path d="M31 68 C31 32 55 20 75 20 C98 20 119 34 119 68 C112 48 98 42 82 44 C65 45 45 48 31 68 Z" fill="#3E2723" stroke="#4A403A" stroke-width="3.2"/>
+              <!-- 标志性腮红 -->
+              <circle cx="50" cy="78" r="11" fill="url(#irasutoBlush)"/>
+              <circle cx="100" cy="78" r="11" fill="url(#irasutoBlush)"/>
+              <!-- 眼镜与自信眼神 -->
+              <rect x="46" y="56" width="24" height="16" rx="4" fill="#FFFFFF" fill-opacity="0.7" stroke="#4A403A" stroke-width="3"/>
+              <rect x="80" y="56" width="24" height="16" rx="4" fill="#FFFFFF" fill-opacity="0.7" stroke="#4A403A" stroke-width="3"/>
+              <line x1="70" y1="63" x2="80" y2="63" stroke="#4A403A" stroke-width="3"/>
+              <circle cx="58" cy="64" r="3.5" fill="#4A403A"/>
+              <circle cx="92" cy="64" r="3.5" fill="#4A403A"/>
+              <!-- 微笑嘴型 -->
+              <path d="M67 84 Q75 93 83 84" fill="none" stroke="#D84315" stroke-width="3.2" stroke-linecap="round"/>
+              <!-- 手持病历板 -->
+              <rect x="86" y="138" width="46" height="60" rx="6" fill="#8D6E63" stroke="#4A403A" stroke-width="3"/>
+              <rect x="92" y="145" width="34" height="46" rx="3" fill="#FFFFFF"/>
+              <rect x="100" y="134" width="18" height="8" rx="3" fill="#B0BEC5" stroke="#4A403A" stroke-width="2.5"/>
+              <text x="75" y="208" text-anchor="middle" font-size="16" font-weight="900" fill="#2B6777">【你：规培医生】</text>
+            </g>
+
+            <!-- 3. 右前：瞳孔地震的小丽先生 -->
+            <g transform="translate(185, 118)">
+              <!-- 蓝色毛衣身体 -->
+              <path d="M35 95 Q75 88 115 95 L122 168 L28 168 Z" fill="#5C89B5" stroke="#4A403A" stroke-width="3.5"/>
+              <!-- 圆脸 -->
+              <circle cx="75" cy="54" r="38" fill="#FFE0BD" stroke="#4A403A" stroke-width="3.5"/>
+              <!-- 额头冷汗阴影 -->
+              <path d="M40 38 Q75 18 110 38 L108 55 Q75 46 42 55 Z" fill="url(#sweatBlue)"/>
+              <!-- 头发 -->
+              <path d="M37 50 C37 22 55 14 75 14 C95 14 113 22 113 50 C104 34 88 30 75 30 C60 30 46 34 37 50 Z" fill="#2D2624" stroke="#4A403A" stroke-width="3"/>
+              <!-- 八字惊恐眉与眼睛 -->
+              <line x1="50" y1="42" x2="64" y2="37" stroke="#4A403A" stroke-width="3" stroke-linecap="round"/>
+              <line x1="100" y1="42" x2="86" y2="37" stroke="#4A403A" stroke-width="3" stroke-linecap="round"/>
+              <circle cx="58" cy="52" r="4" fill="#4A403A"/>
+              <circle cx="92" cy="52" r="4" fill="#4A403A"/>
+              <circle cx="48" cy="64" r="9" fill="url(#irasutoBlush)"/>
+              <circle cx="102" cy="64" r="9" fill="url(#irasutoBlush)"/>
+              <!-- 张嘴惊呼 -->
+              <ellipse cx="75" cy="70" rx="9" ry="7" fill="#E57373" stroke="#4A403A" stroke-width="2.8"/>
+              <!-- 飞溅汗珠 -->
+              <path d="M122 25 Q130 35 122 42 Q114 35 122 25 Z" fill="#4FC3F7" stroke="#4A403A" stroke-width="2"/>
+              <path d="M24 32 Q16 42 24 49 Q32 42 24 32 Z" fill="#4FC3F7" stroke="#4A403A" stroke-width="2"/>
+              <text x="75" y="158" text-anchor="middle" font-size="15" font-weight="900" fill="#FFFFFF">焦虑的小丽先生</text>
+            </g>
+          </svg>
+
+          <p class="mt-2 text-center text-xl font-bold text-[#4A403A] bg-white px-4 py-2 rounded-xl border-2 border-[#4A403A]">
+            💬 “腰椎穿刺？！那是抽骨髓吗？！”
+          </p>
+        </div>
+
+        <!-- 右侧：身份与PBL情境介绍（超大字号，方便后排同学观看） -->
+        <div class="lg:col-span-7 flex flex-col justify-between space-y-5">
+          <div>
+            <div class="inline-block px-4 py-1.5 rounded-full bg-[#FFE4E1] border-2 border-[#4A403A] text-xl font-black text-[#C0392B] mb-3">
+              🚨 神经内科 PBL 互动闯关剧场
+            </div>
+            <h1 class="text-3xl md:text-4xl font-black text-[#2D2624] leading-tight">
+              重生之我是神经科规培生：<br>
+              <span class="text-[#3B8EA5] underline decoration-wavy decoration-[#F48B7B]">搞定小丽先生大作战！</span>
+            </h1>
+          </div>
+
+          <!-- 病历摘要框 -->
+          <div class="bg-[#FFF9E6] irasuto-subcard p-5 space-y-3 text-xl md:text-2xl leading-relaxed text-[#2D2624]">
+            <p>
+              📋 <b>前情提要：</b>28岁“卷王”销售经理<b>小丽</b>，连续加班点外卖、熬夜排练国庆舞蹈后，突发<b>舞台倒地抽搐超30分钟</b>送入急诊！
+            </p>
+            <p>
+              🧠 <b>会诊发现：</b>查体<b>脑膜刺激征阳性</b>，头颅磁共振（MRI）提示<b>颞叶病灶</b>，高度怀疑<b>中枢神经系统感染</b>，急需行<b>【腰椎穿刺术】</b>送检脑脊液！
+            </p>
+            <p class="bg-white p-3.5 rounded-2xl border-2 border-dashed border-[#F48B7B]">
+              ⚡ <b>你的任务：</b>神经科<b>刘主任</b>刚提了“腰穿”二字就被急诊抢救电话叫走！现在由<b>刚听完汇报的你（规培医生）</b>连闯 3 关，用硬核脑脊液知识打消小丽先生的顾虑！
+            </p>
+          </div>
+
+          <!-- 右下角 NEXT 大按钮 -->
+          <div class="flex justify-end pt-2">
+            <button onclick="goToScreen(1)" class="action-btn bg-[#6BC5B8] hover:bg-[#57B5A7] text-[#2D2624] px-9 py-4 text-2xl md:text-3xl font-black flex items-center gap-3">
+              <span>穿上白大褂 · 下一页 / NEXT</span>
+              <span class="text-3xl">➡️</span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================== 画面 1–3：正式闯关页（动态渲染第1~3关） ==================== -->
+    <section id="screen-quiz" class="w-full irasuto-card p-8 md:p-10 hidden">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        
+        <!-- 左侧：当前关卡情景插画 + 角色状态 -->
+        <div class="lg:col-span-4 flex flex-col items-center justify-center bg-[#F4F9FC] irasuto-subcard p-6">
+          <div id="levelTag" class="px-5 py-1.5 rounded-full bg-[#FFE599] border-2 border-[#4A403A] text-xl font-black text-[#4A403A] mb-4">
+            第一关 · 灵魂拷问关
+          </div>
+          
+          <!-- 动态切换的日式小人场景 SVG -->
+          <div id="levelIllustration" class="w-full flex justify-center"></div>
+
+          <div id="levelCharacterCaption" class="mt-4 text-center text-xl font-black text-[#2B6777] bg-white px-4 py-2 rounded-xl border-2 border-[#4A403A] w-full">
+            小丽先生正在疯狂瞳孔地震中...
+          </div>
+        </div>
+
+        <!-- 右侧：大字号剧情问题 + 4个简短幽默选项 -->
+        <div class="lg:col-span-8 flex flex-col justify-between space-y-6">
+          <!-- 气泡对话框 -->
+          <div class="bg-[#FFF9E6] irasuto-subcard p-6 relative">
+            <div id="questionSpeaker" class="inline-block px-4 py-1 rounded-lg bg-[#F48B7B] text-white border-2 border-[#4A403A] text-xl font-black mb-3">
+              🗣️ 小丽先生的灵魂发问
+            </div>
+            <p id="questionDialogue" class="text-2xl md:text-[27px] font-black text-[#2D2624] leading-snug mb-3">
+              <!-- 动态注入对话 -->
+            </p>
+            <p id="questionPrompt" class="text-xl md:text-2xl font-bold text-[#2B6777] bg-white px-4 py-3 rounded-xl border-2 border-[#4A403A]">
+              <!-- 动态注入题目 -->
+            </p>
+          </div>
+
+          <!-- 选项列表（大字号、简短有力） -->
+          <div id="optionsContainer" class="grid grid-cols-1 gap-4">
+            <!-- 动态生成 4 个大按钮 -->
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================== 画面 4：结算画面 · 成功出科 ==================== -->
+    <section id="screen-settlement" class="w-full irasuto-card p-8 md:p-10 relative overflow-hidden hidden">
+      <!-- 自动飘落的庆祝彩带容器 -->
+      <div id="confettiContainer" class="absolute inset-0 pointer-events-none overflow-hidden"></div>
+
+      <!-- 结算画面四周会自己动的日式小装饰 -->
+      <div class="absolute top-6 left-6 anim-wiggle pointer-events-none hidden md:block">
+        <div class="bg-[#FFE599] border-3 border-[#4A403A] px-4 py-2 rounded-2xl font-black text-xl shadow-md">
+          🌟 最佳规培生 🌟
+        </div>
+      </div>
+      <div class="absolute top-6 right-6 anim-float-1 pointer-events-none hidden md:block">
+        <div class="bg-[#FFD1DC] border-3 border-[#4A403A] px-4 py-2 rounded-2xl font-black text-xl shadow-md">
+          💖 医患沟通满分 💖
+        </div>
+      </div>
+
+      <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        
+        <!-- 左侧：完美复刻原图“交班成功，火速撤退”奔跑日本小人医生 + 自律跳动小装饰 -->
+        <div class="lg:col-span-5 flex flex-col items-center justify-center bg-[#FFFFFF] irasuto-subcard p-6 relative">
+          <!-- 会自己动的周围小星星与安心徽章 -->
+          <div class="absolute top-4 left-4 text-4xl anim-wiggle">✨</div>
+          <div class="absolute top-4 right-4 text-4xl anim-float-2">🎉</div>
+          <div class="absolute bottom-16 left-5 text-3xl anim-float-1">💊</div>
+          <div class="absolute bottom-16 right-5 text-3xl anim-wiggle">🩺</div>
+
+          <h2 class="text-3xl md:text-4xl font-black text-[#2D2624] tracking-wide mb-2 text-center">
+            交班成功，火速撤退
+          </h2>
+
+          <!-- 奔跑的日本小人医生 SVG（自带跑步动画 anim-run） -->
+          <svg class="w-full max-w-[300px] h-auto anim-run" viewBox="0 0 320 300">
+            <!-- 地面速度线 -->
+            <line x1="20" y1="265" x2="85" y2="265" stroke="#B0BEC5" stroke-width="5" stroke-linecap="round"/>
+            <line x1="45" y1="280" x2="120" y2="280" stroke="#CFD8DC" stroke-width="4" stroke-linecap="round"/>
+
+            <!-- 迈开大步奔跑的双腿（深色西裤+黑色皮鞋） -->
+            <!-- 前腿（左） -->
+            <path d="M135 195 L75 235 L48 220" fill="none" stroke="#263238" stroke-width="26" stroke-linecap="round" stroke-linejoin="round"/>
+            <polygon points="44,205 28,232 58,238" fill="#111111" stroke="#263238" stroke-width="3"/>
+            <!-- 后腿（右） -->
+            <path d="M165 195 L220 232 L245 215" fill="none" stroke="#263238" stroke-width="26" stroke-linecap="round" stroke-linejoin="round"/>
+            <polygon points="242,205 262,232 235,235" fill="#111111" stroke="#263238" stroke-width="3"/>
+
+            <!-- 后手臂（左手提着白色医疗急救箱） -->
+            <path d="M180 132 L225 150 L218 185" fill="none" stroke="#FFFFFF" stroke-width="22" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M180 132 L225 150 L218 185" fill="none" stroke="#546E7A" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="216" cy="190" r="11" fill="#FFE0BD" stroke="#4A403A" stroke-width="3"/>
+
+            <!-- 倾斜的急救箱 -->
+            <g transform="translate(192, 182) rotate(-18)">
+              <!-- 提手 -->
+              <path d="M18 0 V-12 H44 V0" fill="none" stroke="#546E7A" stroke-width="6" stroke-linecap="round"/>
+              <!-- 箱体 -->
+              <rect x="0" y="0" width="64" height="48" rx="8" fill="#FFFFFF" stroke="#546E7A" stroke-width="4"/>
+              <!-- 十字标志 -->
+              <rect x="27" y="11" width="10" height="26" rx="2" fill="#78909C"/>
+              <rect x="19" y="19" width="26" height="10" rx="2" fill="#78909C"/>
+            </g>
+
+            <!-- 飘起的白大褂躯干 -->
+            <path d="M118 118 L184 118 L202 205 L155 195 L102 208 Z" fill="#FFFFFF" stroke="#546E7A" stroke-width="4" stroke-linejoin="round"/>
+            <!-- 衬衫与酒红领带 -->
+            <polygon points="136,118 166,118 150,158" fill="#FFFFFF" stroke="#546E7A" stroke-width="3"/>
+            <polygon points="146,124 155,124 157,154 150,162 144,154" fill="#8D3B46"/>
+            <!-- 白大褂扣子 -->
+            <circle cx="148" cy="172" r="3.5" fill="#90A4AE"/>
+            <circle cx="146" cy="186" r="3.5" fill="#90A4AE"/>
+
+            <!-- 前挥手臂（右手握拳欢快冲刺） -->
+            <path d="M122 135 L82 145 L68 112" fill="none" stroke="#FFFFFF" stroke-width="22" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M122 135 L82 145 L68 112" fill="none" stroke="#546E7A" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="66" cy="105" r="13" fill="#FFE0BD" stroke="#4A403A" stroke-width="3"/>
+
+            <!-- 医生圆润脑袋 -->
+            <circle cx="152" cy="72" r="44" fill="#FFE0BD" stroke="#4A403A" stroke-width="3.8"/>
+            <!-- 经典日式三七分黑发 -->
+            <path d="M110 62 C108 26 132 18 156 18 C182 18 198 32 196 68 C196 50 184 36 156 36 C130 36 116 44 110 62 Z" fill="#212121" stroke="#212121" stroke-width="2"/>
+            <!-- 柔和大腮红 -->
+            <circle cx="125" cy="82" r="13" fill="url(#irasutoBlush)"/>
+            <circle cx="176" cy="82" r="13" fill="url(#irasutoBlush)"/>
+            <!-- 干劲满满的眉毛 -->
+            <line x1="124" y1="48" x2="140" y2="54" stroke="#212121" stroke-width="4" stroke-linecap="round"/>
+            <line x1="176" y1="48" x2="160" y2="54" stroke="#212121" stroke-width="4" stroke-linecap="round"/>
+            <!-- 白色方形眼镜框 -->
+            <rect x="118" y="56" width="27" height="17" rx="3" fill="#FFFFFF" stroke="#E0E0E0" stroke-width="2"/>
+            <rect x="155" y="56" width="27" height="17" rx="3" fill="#FFFFFF" stroke="#E0E0E0" stroke-width="2"/>
+            <line x1="145" y1="64" x2="155" y2="64" stroke="#212121" stroke-width="3.5"/>
+            <circle cx="132" cy="64" r="3.5" fill="#212121"/>
+            <circle cx="168" cy="64" r="3.5" fill="#212121"/>
+            <!-- 开心上扬嘴角 -->
+            <path d="M140 92 Q150 103 160 92" fill="none" stroke="#B71C1C" stroke-width="4" stroke-linecap="round"/>
+          </svg>
+
+          <span class="mt-2 px-5 py-1.5 rounded-full bg-[#E8F5E9] border-2 border-[#4A403A] text-xl font-black text-[#2E7D32]">
+            🏆 神经内科 · 满分准时下班！
+          </span>
+        </div>
+
+        <!-- 右侧：出科夸夸荣誉证书 -->
+        <div class="lg:col-span-7 flex flex-col justify-between space-y-5">
+          <div>
+            <div class="inline-block px-5 py-1.5 rounded-full bg-[#FFF3CD] border-2 border-[#4A403A] text-xl font-black text-[#B7791F] mb-2">
+              🎊 恭喜通关 · 神经内科最佳规培生出科认证
+            </div>
+            <h1 class="text-3xl md:text-4xl font-black text-[#2D2624]">
+              太强啦！你已完美搞定小丽先生，<br>
+              <span class="text-[#D9534F]">正式获批满分顺利出科！</span>
+            </h1>
+          </div>
+
+          <!-- 三条夸夸总结卡片 -->
+          <div class="space-y-3.5 text-xl md:text-2xl">
+            <div class="bg-[#FFF9E6] irasuto-subcard p-4 flex items-start gap-4">
+              <span class="text-3xl">🏅</span>
+              <div>
+                <p class="font-black text-[#2D2624]">家属信任度 100% MAX！</p>
+                <p class="text-lg md:text-xl text-[#5C534E] font-bold">小丽先生彻底明白<b>腰穿抽 &lt;10 mL 脑脊液属于 01 代偿期</b>，当场爽快签字并要给你送锦旗！</p>
+              </div>
+            </div>
+
+            <div class="bg-[#EEF7EC] irasuto-subcard p-4 flex items-start gap-4">
+              <span class="text-3xl">👨‍⚕️</span>
+              <div>
+                <p class="font-black text-[#2E6F40]">刘主任欣慰盖章夸夸！</p>
+                <p class="text-lg md:text-xl text-[#5C534E] font-bold">“基础极其扎实！不仅牢记<b>高颅压放液诱发脑疝</b>的禁忌底线，还能一眼识破<b>腰穿针眼持续渗漏（医源性脊柱漏）</b>！”</p>
+              </div>
+            </div>
+
+            <div class="bg-[#FDF2F4] irasuto-subcard p-4 flex items-start gap-4">
+              <span class="text-3xl">💃</span>
+              <div>
+                <p class="font-black text-[#B83B4A]">小丽康复出院 Happy Ending！</p>
+                <p class="text-lg md:text-xl text-[#5C534E] font-bold">经二代测序明确病原体精准抗感染 + 平卧补液后，小丽头痛全消，并发誓再也不熬夜改 PPT 了！</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- 底部操作栏 -->
+          <div class="flex flex-wrap items-center justify-between gap-4 pt-2">
+            <div class="text-xl font-black text-[#2B6777]">
+              👏 感谢大家参与本次神经系统 PBL 互动！
+            </div>
+            <button onclick="goToScreen(0)" class="action-btn bg-[#FFD97D] hover:bg-[#FCCB52] text-[#2D2624] px-8 py-3.5 text-2xl font-black flex items-center gap-2">
+              <span>🔄 再玩一次</span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==================== 弹窗 1：回答正确 BINGO! 弹窗 ==================== -->
+  <div id="bingoModal" onclick="advanceFromBingo()" class="fixed inset-0 z-50 bg-black/55 backdrop-blur-sm hidden items-center justify-center p-6 cursor-pointer">
+    <div class="irasuto-card max-w-2xl w-full p-8 bg-[#FFFDF6] text-center relative anim-pop">
+      <!-- 顶部 BINGO 徽章 -->
+      <div class="inline-block px-8 py-2 rounded-full bg-[#6BC5B8] border-4 border-[#4A403A] text-4xl md:text-5xl font-black text-white tracking-wider shadow-md mb-4">
+        🎯 BINGO! 回答正确！
+      </div>
+
+      <!-- 日本小人医生比心/竖大拇指插画 -->
+      <div class="flex justify-center my-3">
+        <svg width="160" height="150" viewBox="0 0 180 165">
+          <!-- 白大褂 -->
+          <path d="M40 112 Q90 102 140 112 L148 160 L32 160 Z" fill="#FFFFFF" stroke="#4A403A" stroke-width="3.5"/>
+          <polygon points="75,112 105,112 90,145" fill="#E3F2FD" stroke="#4A403A" stroke-width="2.5"/>
+          <polygon points="85,118 95,118 97,145 90,152 83,145" fill="#F48B7B"/>
+          <!-- 圆脸 -->
+          <circle cx="90" cy="64" r="44" fill="#FFE0BD" stroke="#4A403A" stroke-width="3.5"/>
+          <path d="M46 64 C46 28 68 18 90 18 C112 18 134 28 134 64 C126 44 108 38 90 38 C72 38 54 44 46 64 Z" fill="#3E2723" stroke="#4A403A" stroke-width="3.2"/>
+          <!-- 腮红 -->
+          <circle cx="64" cy="74" r="12" fill="url(#irasutoBlush)"/>
+          <circle cx="116" cy="74" r="12" fill="url(#irasutoBlush)"/>
+          <!-- 眼镜与开心弯弯眼 ^ ^ -->
+          <rect x="58" y="52" width="26" height="17" rx="4" fill="#FFFFFF" fill-opacity="0.75" stroke="#4A403A" stroke-width="3"/>
+          <rect x="96" y="52" width="26" height="17" rx="4" fill="#FFFFFF" fill-opacity="0.75" stroke="#4A403A" stroke-width="3"/>
+          <line x1="84" y1="60" x2="96" y2="60" stroke="#4A403A" stroke-width="3"/>
+          <path d="M65 62 Q71 54 77 62" fill="none" stroke="#4A403A" stroke-width="3.2" stroke-linecap="round"/>
+          <path d="M103 62 Q109 54 115 62" fill="none" stroke="#4A403A" stroke-width="3.2" stroke-linecap="round"/>
+          <!-- 开心大笑嘴 -->
+          <path d="M78 82 Q90 96 102 82 Z" fill="#EF5350" stroke="#4A403A" stroke-width="2.8"/>
+          <!-- 竖起大拇指 -->
+          <g transform="translate(132, 85)">
+            <rect x="6" y="16" width="26" height="24" rx="8" fill="#FFE0BD" stroke="#4A403A" stroke-width="3"/>
+            <path d="M12 18 V6 C12 0 22 0 22 6 V18" fill="#FFE0BD" stroke="#4A403A" stroke-width="3"/>
+          </g>
+        </svg>
+      </div>
+
+      <!-- 大字号知识点总结 -->
+      <p id="bingoFeedbackText" class="text-2xl md:text-3xl font-black text-[#2D2624] bg-[#EEF7EC] p-5 rounded-2xl border-3 border-[#4A403A] leading-relaxed">
+        <!-- 动态注入解析 -->
+      </p>
+
+      <p class="mt-4 text-xl font-bold text-[#68A357]">
+        ✨ 正在自动切入下一关（点击任意位置可立即跳转）...
+      </p>
+    </div>
+  </div>
+
+  <!-- ==================== 弹窗 2：选错选项“触发吐槽”弹窗 ==================== -->
+  <!-- 点击任意地方即可立即消失，或 5 秒后自动消失回到当前关卡 -->
+  <div id="roastModal" onclick="closeRoastModal()" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden items-center justify-center p-6 cursor-pointer">
+    <div class="irasuto-card max-w-2xl w-full p-8 bg-[#FFFDF6] text-center relative anim-shake">
+      <!-- 顶部吐槽警告条 -->
+      <div class="inline-block px-7 py-2 rounded-full bg-[#F48B7B] border-4 border-[#4A403A] text-3xl md:text-4xl font-black text-white shadow-md mb-4">
+        💥 触发吐槽 · 刘主任血压飙升！
+      </div>
+
+      <!-- 日本小人流汗震惊医生插画 -->
+      <div class="flex justify-center my-2">
+        <svg width="155" height="145" viewBox="0 0 180 165">
+          <!-- 白大褂 -->
+          <path d="M40 112 Q90 102 140 112 L148 160 L32 160 Z" fill="#FFFFFF" stroke="#4A403A" stroke-width="3.5"/>
+          <polygon points="75,112 105,112 90,145" fill="#E3F2FD" stroke="#4A403A" stroke-width="2.5"/>
+          <!-- 圆脸 + 额头黑线流汗 -->
+          <circle cx="90" cy="64" r="44" fill="#FFE0BD" stroke="#4A403A" stroke-width="3.5"/>
+          <path d="M48 45 Q90 22 132 45 L130 64 Q90 54 50 64 Z" fill="url(#sweatBlue)"/>
+          <path d="M46 64 C46 28 68 18 90 18 C112 18 134 28 134 64 C126 44 108 38 90 38 C72 38 54 44 46 64 Z" fill="#3E2723" stroke="#4A403A" stroke-width="3.2"/>
+          <!-- 眼镜与震惊豆豆眼 -->
+          <rect x="58" y="52" width="26" height="17" rx="4" fill="#FFFFFF" stroke="#4A403A" stroke-width="3"/>
+          <rect x="96" y="52" width="26" height="17" rx="4" fill="#FFFFFF" stroke="#4A403A" stroke-width="3"/>
+          <line x1="84" y1="60" x2="96" y2="60" stroke="#4A403A" stroke-width="3"/>
+          <circle cx="71" cy="60" r="3.5" fill="#4A403A"/>
+          <circle cx="109" cy="60" r="3.5" fill="#4A403A"/>
+          <!-- 波浪发抖嘴 -->
+          <path d="M75 86 Q82 80 90 86 Q98 92 105 86" fill="none" stroke="#4A403A" stroke-width="3.5" stroke-linecap="round"/>
+          <!-- 大汗珠与十字青筋 -->
+          <path d="M142 35 Q152 48 142 56 Q132 48 142 35 Z" fill="#4FC3F7" stroke="#4A403A" stroke-width="2.5"/>
+          <g stroke="#E53935" stroke-width="3.5" stroke-linecap="round">
+            <path d="M30 28 L38 36 M38 28 L30 36"/>
+          </g>
+        </svg>
+      </div>
+
+      <!-- 超大字号吐槽文本 -->
+      <p id="roastFeedbackText" class="text-2xl md:text-3xl font-black text-[#B83B4A] bg-[#FDF2F4] p-5 rounded-2xl border-3 border-[#4A403A] leading-relaxed">
+        <!-- 动态注入吐槽文案 -->
+      </p>
+
+      <!-- 5秒自动倒计时条 -->
+      <div class="mt-5 w-full bg-[#EFEAE0] h-4 rounded-full border-2 border-[#4A403A] overflow-hidden">
+        <div id="roastTimerBar" class="h-full bg-[#F48B7B]"></div>
+      </div>
+
+      <p class="mt-3 text-xl md:text-2xl font-black text-[#5C534E]">
+        👆 点击屏幕任意位置立即关闭（或 <span id="roastSecondsText">5</span> 秒后自动返回重选）
+      </p>
+    </div>
+  </div>
+
+  <script>
+    // ==================== 音效合成器（无需外部音频文件，纯 Web Audio API） ====================
+    let soundEnabled = true;
+    let audioCtx = null;
+
+    function initAudio() {
+      if (!audioCtx) {
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        if (AudioContext) audioCtx = new AudioContext();
+      }
+      if (audioCtx && audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+    }
+
+    function toggleSound() {
+      soundEnabled = !soundEnabled;
+      const btn = document.getElementById('soundToggleBtn');
+      btn.textContent = soundEnabled ? '🔊 音效: 开' : '🔇 音效: 关';
+    }
+
+    function playSound(type) {
+      if (!soundEnabled) return;
+      try {
+        initAudio();
+        if (!audioCtx) return;
+        const now = audioCtx.currentTime;
+
+        if (type === 'click') {
+          const osc = audioCtx.createOscillator();
+          const gain = audioCtx.createGain();
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(520, now);
+          osc.frequency.exponentialRampToValueAtTime(680, now + 0.08);
+          gain.gain.setValueAtTime(0.12, now);
+          gain.gain.linearRampToValueAtTime(0.01, now + 0.08);
+          osc.connect(gain);
+          gain.connect(audioCtx.destination);
+          osc.start(now);
+          osc.stop(now + 0.08);
+        } else if (type === 'bingo') {
+          const notes = [523.25, 659.25, 783.99, 1046.5];
+          notes.forEach((freq, idx) => {
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.type = 'triangle';
+            osc.frequency.setValueAtTime(freq, now + idx * 0.09);
+            gain.gain.setValueAtTime(0.18, now + idx * 0.09);
+            gain.gain.exponentialRampToValueAtTime(0.008, now + idx * 0.09 + 0.28);
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            osc.start(now + idx * 0.09);
+            osc.stop(now + idx * 0.09 + 0.28);
+          });
+        } else if (type === 'roast') {
+          const osc = audioCtx.createOscillator();
+          const gain = audioCtx.createGain();
+          osc.type = 'sawtooth';
+          osc.frequency.setValueAtTime(220, now);
+          osc.frequency.linearRampToValueAtTime(130, now + 0.32);
+          gain.gain.setValueAtTime(0.15, now);
+          gain.gain.linearRampToValueAtTime(0.01, now + 0.35);
+          osc.connect(gain);
+          gain.connect(audioCtx.destination);
+          osc.start(now);
+          osc.stop(now + 0.35);
+        } else if (type === 'fanfare') {
+          const chord = [523.25, 659.25, 783.99, 1046.5, 1318.5];
+          chord.forEach((freq, idx) => {
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.type = 'triangle';
+            osc.frequency.setValueAtTime(freq, now + idx * 0.11);
+            gain.gain.setValueAtTime(0.2, now + idx * 0.11);
+            gain.gain.exponentialRampToValueAtTime(0.008, now + idx * 0.11 + 0.45);
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            osc.start(now + idx * 0.11);
+            osc.stop(now + idx * 0.11 + 0.45);
+          });
+        }
+      } catch (e) {
+        // 忽略浏览器音频自动播放限制报错
+      }
+    }
+
+    // ==================== 三道核心关卡数据（紧扣PBL案例与脑脊液汇报考点） ====================
+    const levelsData = [
+      {
+        levelNumber: 1,
+        tagText: "第一关 · 灵魂拷问关 (1/3)",
+        speaker: "🗣️ 瞳孔地震的小丽先生",
+        dialogue: "“腰椎穿刺？！那是抽骨髓吗？！抽了小丽会不会直接变傻啊？！”",
+        prompt: "💡 规培生请接招：成人每日生成 400–500 mL 脑脊液，诊断性腰穿只抽【不到 10 mL】，属于哪个阶段？",
+        caption: "小丽先生吓得紧紧抱住了签字笔...",
+        trustPercent: 35,
+        illustrationSVG: `
+          <svg width="240" height="220" viewBox="0 0 240 220">
+            <!-- 惊恐发问的小丽先生 + 淡定解释的规培生 -->
+            <circle cx="120" cy="110" r="95" fill="#FFF9E6" stroke="#4A403A" stroke-width="3" stroke-dasharray="6 6"/>
+            <!-- 家属 -->
+            <g transform="translate(55, 25)">
+              <path d="M25 110 Q65 100 105 110 L112 180 L18 180 Z" fill="#5C89B5" stroke="#4A403A" stroke-width="3.5"/>
+              <circle cx="65" cy="62" r="42" fill="#FFE0BD" stroke="#4A403A" stroke-width="3.5"/>
+              <path d="M26 45 Q65 24 104 45 L102 62 Q65 52 28 62 Z" fill="url(#sweatBlue)"/>
+              <path d="M24 58 C24 25 45 16 65 16 C85 16 106 25 106 58 C96 38 80 34 65 34 C50 34 34 38 24 58 Z" fill="#2D2624" stroke="#4A403A" stroke-width="3"/>
+              <circle cx="46" cy="72" r="10" fill="url(#irasutoBlush)"/>
+              <circle cx="84" cy="72" r="10" fill="url(#irasutoBlush)"/>
+              <circle cx="48" cy="58" r="4.5" fill="#4A403A"/>
+              <circle cx="82" cy="58" r="4.5" fill="#4A403A"/>
+              <ellipse cx="65" cy="78" rx="10" ry="8" fill="#E57373" stroke="#4A403A" stroke-width="3"/>
+              <text x="115" y="45" font-size="28" font-weight="900" fill="#D9534F">?!</text>
+            </g>
+          </svg>
+        `,
+        options: [
+          {
+            label: "A. 01 代偿期（毛毛雨，多无症状）",
+            isCorrect: true,
+            feedback: "回答正确！单次放液 3–15 mL 属于【01 代偿期】，脉络丛以 0.35 mL/min 持续生成，CSF 压力与影像均正常，绝不是抽骨髓！"
+          },
+          {
+            label: "B. 抽的是骨髓精华，得喝十全大补汤",
+            isCorrect: false,
+            roast: "💥 触发吐槽：刘主任听了想拿叩诊锤敲你脑壳！腰穿进的是【蛛网膜下隙】抽脑脊液，根本不是抽骨髓腔！"
+          },
+          {
+            label: "C. 04 失代偿危象（脑水当场枯竭）",
+            isCorrect: false,
+            roast: "💥 触发吐槽：才抽不到 10 mL 就当场枯竭，脑室里的脉络丛（日产 400–500 mL）每天白干活啦？！"
+          },
+          {
+            label: "D. 抽完智商会随机掉落 10%",
+            isCorrect: false,
+            roast: "💥 触发吐槽：小丽只是中枢神经系统感染，不是大脑被格式化了！抽不到 10 mL 完全在代偿期内！"
+          }
+        ]
+      },
+      {
+        levelNumber: 2,
+        tagText: "第二关 · 夺命细节关 (2/3)",
+        speaker: "🗣️ 精打细算的小丽先生",
+        dialogue: "“既然腰穿这么安全，干嘛非要先花钱做头颅磁共振（MRI）看那个颞叶病灶？直接上手抽不就完了？”",
+        prompt: "💡 规培生请接招：若患者处于【重度高颅压】状态，贸然腰穿放液会发生什么致命危险？",
+        caption: "必须用最硬核的病理机制说服他！",
+        trustPercent: 68,
+        illustrationSVG: `
+          <svg width="240" height="220" viewBox="0 0 240 220">
+            <!-- 手指头颅MRI胶片认真科普的日本小人医生 -->
+            <rect x="22" y="22" width="90" height="110" rx="10" fill="#263238" stroke="#4A403A" stroke-width="3.5"/>
+            <ellipse cx="67" cy="72" rx="30" ry="36" fill="none" stroke="#81D4FA" stroke-width="3"/>
+            <circle cx="80" cy="78" r="9" fill="#FF8A80"/>
+            <text x="67" y="122" text-anchor="middle" font-size="13" font-weight="900" fill="#FFFFFF">头颅MRI: 颞叶</text>
+            <g transform="translate(95, 35)">
+              <path d="M25 105 Q65 95 105 105 L112 175 L18 175 Z" fill="#FFFFFF" stroke="#4A403A" stroke-width="3.5"/>
+              <polygon points="52,105 78,105 65,138" fill="#E3F2FD" stroke="#4A403A" stroke-width="2.5"/>
+              <circle cx="65" cy="58" r="40" fill="#FFE0BD" stroke="#4A403A" stroke-width="3.5"/>
+              <path d="M25 58 C25 25 45 16 65 16 C85 16 105 25 105 58 C95 38 80 34 65 34 C50 34 35 38 25 58 Z" fill="#3E2723" stroke="#4A403A" stroke-width="3"/>
+              <rect x="38" y="48" width="22" height="14" rx="3" fill="#FFFFFF" stroke="#4A403A" stroke-width="2.8"/>
+              <rect x="70" y="48" width="22" height="14" rx="3" fill="#FFFFFF" stroke="#4A403A" stroke-width="2.8"/>
+              <line x1="60" y1="55" x2="70" y2="55" stroke="#4A403A" stroke-width="2.8"/>
+              <circle cx="49" cy="55" r="3" fill="#4A403A"/>
+              <circle cx="81" cy="55" r="3" fill="#4A403A"/>
+              <path d="M56 76 Q65 83 74 76" fill="none" stroke="#4A403A" stroke-width="3" stroke-linecap="round"/>
+            </g>
+          </svg>
+        `,
+        options: [
+          {
+            label: "A. 脑脊液会像香槟一样喷到天花板",
+            isCorrect: false,
+            roast: "💥 触发吐槽：虽然高颅压确实会喷，但这不是最要命的致死机制！再想想脑组织移位！"
+          },
+          {
+            label: "B. 颅-脊压力梯度骤增，少量放液即可诱发脑疝！",
+            isCorrect: true,
+            feedback: "回答正确！高颅压时少量放液即可因【颅腔-脊髓腔压力梯度骤增】诱发脑疝（04 失代偿危象），腰穿前做 MRI 排除颅内占位是保命底线！"
+          },
+          {
+            label: "C. 会不小心把脉络丛一起吸出来",
+            isCorrect: false,
+            roast: "💥 触发吐槽：脉络丛长在脑室里，你拿吸尘器在腰椎间隙做穿刺呢？！"
+          },
+          {
+            label: "D. 纯粹为了帮磁共振科室冲月底 KPI",
+            isCorrect: false,
+            roast: "💥 触发吐槽：医患沟通喜提负分！先做影像排除高颅压占位禁忌症，是神经科医生的保命铁律！"
+          }
+        ]
+      },
+      {
+        levelNumber: 3,
+        tagText: "第三关 · 术后捉妖关 (3/3)",
+        speaker: "🗣️ 病房里坐起来改PPT的小丽",
+        dialogue: "腰穿顺利完成！但第2天，工作狂小丽刚从病床上【坐起来】想改部门PPT，突然喊道：“哎呀我头胀痛、脖子也痛！但一平躺下又好了！”",
+        prompt: "💡 规培生请接招：这种典型的“直立性头痛、平卧缓解”，是谁在幕后搞鬼？",
+        caption: "工作狂小丽哪怕住院还惦记着PPT...",
+        trustPercent: 90,
+        illustrationSVG: `
+          <svg width="240" height="220" viewBox="0 0 240 220">
+            <!-- 病床上坐起抱着笔记本电脑头疼的小丽 -->
+            <rect x="20" y="145" width="200" height="50" rx="10" fill="#FFFFFF" stroke="#4A403A" stroke-width="3.5"/>
+            <g transform="translate(55, 20)">
+              <path d="M30 95 Q65 88 100 95 L108 145 L22 145 Z" fill="#F8BBD0" stroke="#4A403A" stroke-width="3.5"/>
+              <circle cx="65" cy="54" r="38" fill="#FFE0BD" stroke="#4A403A" stroke-width="3.5"/>
+              <path d="M27 52 C27 20 45 14 65 14 C85 14 103 20 103 52 C93 34 78 30 65 30 C52 30 37 34 27 52 Z" fill="#3E2723" stroke="#4A403A" stroke-width="3"/>
+              <circle cx="46" cy="64" r="9" fill="url(#irasutoBlush)"/>
+              <circle cx="84" cy="64" r="9" fill="url(#irasutoBlush)"/>
+              <!-- 痛苦眯眼 -->
+              <path d="M44 50 L54 55 L44 60" fill="none" stroke="#4A403A" stroke-width="3" stroke-linecap="round"/>
+              <path d="M86 50 L76 55 L86 60" fill="none" stroke="#4A403A" stroke-width="3" stroke-linecap="round"/>
+              <path d="M56 74 Q65 66 74 74" fill="none" stroke="#4A403A" stroke-width="3" stroke-linecap="round"/>
+              <!-- 头痛闪电符号 -->
+              <polyline points="112,18 100,32 114,34 102,48" fill="none" stroke="#E53935" stroke-width="3.5" stroke-linecap="round"/>
+              <!-- 笔记本电脑 -->
+              <rect x="40" y="110" width="54" height="34" rx="4" fill="#CFD8DC" stroke="#4A403A" stroke-width="3"/>
+              <text x="67" y="132" text-anchor="middle" font-size="12" font-weight="900" fill="#4A403A">PPT</text>
+            </g>
+          </svg>
+        `,
+        options: [
+          {
+            label: "A. 对做 PPT 产生了生理性过敏",
+            isCorrect: false,
+            roast: "💥 触发吐槽：虽然打工人看到 PPT 都头疼，但“坐起痛、平卧缓解”是教科书级的直立性低颅压表现！"
+          },
+          {
+            label: "B. 刘主任昨天手抖偷偷多抽了 200 mL",
+            isCorrect: false,
+            roast: "💥 触发吐槽：刘主任大呼冤枉！10 mL 的无菌留样管根本装不下 200 mL 啊！"
+          },
+          {
+            label: "C. 拔针后硬脊膜针眼持续渗漏（医源性脊柱漏）",
+            isCorrect: true,
+            feedback: "回答正确！腰穿后头痛（PDPH）并非抽走的那几毫升脑脊液所致，而是拔针后【硬脊膜针眼持续渗漏】导致脑脊液低容量，平卧休息补液即可缓解！"
+          },
+          {
+            label: "D. 脑脊液趁她睡觉从鼻孔蒸发了",
+            isCorrect: false,
+            roast: "💥 触发吐槽：鼻孔滴水那是【A·颅底漏】！腰穿针眼漏在脊柱硬膜外间隙，属于看不见摸不着的【B·脊柱内漏】！"
+          }
+        ]
+      }
+    ];
+
+    // ==================== 游戏状态控制 ====================
+    let currentScreenIndex = 0; // 0: 介绍页, 1: 第1关, 2: 第2关, 3: 第3关, 4: 出科结算页
+    let roastTimeoutId = null;
+    let roastCountdownIntervalId = null;
+    let bingoTimeoutId = null;
+
+    function updateHeaderStatus(screenIdx) {
+      const stageBadge = document.getElementById('stageBadge');
+      const trustBar = document.getElementById('trustBar');
+      const trustText = document.getElementById('trustText');
+      const bpBar = document.getElementById('bpBar');
+      const bpText = document.getElementById('bpText');
+
+      // 恢复正常刘主任血压
+      bpBar.style.width = '20%';
+      bpBar.className = 'h-full bg-[#6BC5B8] rounded-full transition-all duration-300';
+      bpText.textContent = '120/80';
+      bpText.className = 'text-xl font-black text-[#2E7D32]';
+
+      if (screenIdx === 0) {
+        stageBadge.textContent = '📖 第一页：身份介绍';
+        trustBar.style.width = '25%';
+        trustText.textContent = '25%';
+      } else if (screenIdx >= 1 && screenIdx <= 3) {
+        const lvl = levelsData[screenIdx - 1];
+        stageBadge.textContent = `🎯 闯关中：第 ${lvl.levelNumber} / 3 关`;
+        trustBar.style.width = `${lvl.trustPercent}%`;
+        trustText.textContent = `${lvl.trustPercent}%`;
+      } else if (screenIdx === 4) {
+        stageBadge.textContent = '🏆 恭喜满分出科！';
+        trustBar.style.width = '100%';
+        trustText.textContent = '100%';
+      }
+    }
+
+    function goToScreen(screenIdx) {
+      playSound('click');
+      clearAllTimers();
+      currentScreenIndex = screenIdx;
+
+      const s0 = document.getElementById('screen-0');
+      const sQuiz = document.getElementById('screen-quiz');
+      const sSettle = document.getElementById('screen-settlement');
+
+      s0.classList.add('hidden');
+      sQuiz.classList.add('hidden');
+      sSettle.classList.add('hidden');
+
+      updateHeaderStatus(screenIdx);
+
+      if (screenIdx === 0) {
+        s0.classList.remove('hidden');
+      } else if (screenIdx >= 1 && screenIdx <= 3) {
+        renderQuizLevel(screenIdx - 1);
+        sQuiz.classList.remove('hidden');
+      } else if (screenIdx === 4) {
+        sSettle.classList.remove('hidden');
+        playSound('fanfare');
+        spawnConfetti();
+      }
+    }
+
+    function renderQuizLevel(levelIdx) {
+      const lvl = levelsData[levelIdx];
+      document.getElementById('levelTag').textContent = lvl.tagText;
+      document.getElementById('levelIllustration').innerHTML = lvl.illustrationSVG;
+      document.getElementById('levelCharacterCaption').textContent = lvl.caption;
+      document.getElementById('questionSpeaker').textContent = lvl.speaker;
+      document.getElementById('questionDialogue').textContent = lvl.dialogue;
+      document.getElementById('questionPrompt').textContent = lvl.prompt;
+
+      const container = document.getElementById('optionsContainer');
+      container.innerHTML = '';
+
+      lvl.options.forEach((opt) => {
+        const btn = document.createElement('button');
+        btn.className = 'option-btn w-full text-left px-6 py-4 text-2xl md:text-[25px] font-black text-[#2D2624] flex items-center justify-between gap-4';
+        btn.innerHTML = `
+          <span>${opt.label}</span>
+          <span class="text-2xl opacity-60">👉</span>
+        `;
+        btn.onclick = () => handleOptionSelect(opt);
+        container.appendChild(btn);
+      });
+    }
+
+    function handleOptionSelect(opt) {
+      if (opt.isCorrect) {
+        playSound('bingo');
+        showBingoModal(opt.feedback);
+      } else {
+        playSound('roast');
+        spikeDirectorBloodPressure();
+        showRoastModal(opt.roast);
+      }
+    }
+
+    function spikeDirectorBloodPressure() {
+      const bpBar = document.getElementById('bpBar');
+      const bpText = document.getElementById('bpText');
+      bpBar.style.width = '95%';
+      bpBar.className = 'h-full bg-[#E53935] rounded-full transition-all duration-300';
+      bpText.textContent = '180/110 危!';
+      bpText.className = 'text-xl font-black text-[#D32F2F]';
+    }
+
+    // ==================== BINGO 弹窗控制 ====================
+    function showBingoModal(feedbackText) {
+      clearAllTimers();
+      const modal = document.getElementById('bingoModal');
+      document.getElementById('bingoFeedbackText').textContent = feedbackText;
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+
+      // 2.5秒后自动切入下一关（或用户点击立即跳关）
+      bingoTimeoutId = setTimeout(() => {
+        advanceFromBingo();
+      }, 2500);
+    }
+
+    function advanceFromBingo() {
+      clearAllTimers();
+      const modal = document.getElementById('bingoModal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+      goToScreen(currentScreenIndex + 1);
+    }
+
+    // ==================== 触发吐槽弹窗控制（任意点击消失 或 5秒自动消失） ====================
+    function showRoastModal(roastText) {
+      clearAllTimers();
+      const modal = document.getElementById('roastModal');
+      const timerBar = document.getElementById('roastTimerBar');
+      const secText = document.getElementById('roastSecondsText');
+
+      document.getElementById('roastFeedbackText').textContent = roastText;
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+
+      // 重置并启动 5 秒进度条动画
+      timerBar.classList.remove('countdown-bar-fill');
+      void timerBar.offsetWidth; // 触发重绘
+      timerBar.classList.add('countdown-bar-fill');
+
+      let secondsLeft = 5;
+      secText.textContent = secondsLeft;
+
+      roastCountdownIntervalId = setInterval(() => {
+        secondsLeft -= 1;
+        if (secondsLeft > 0) {
+          secText.textContent = secondsLeft;
+        }
+      }, 1000);
+
+      // 5秒后自动消失回到当前关卡
+      roastTimeoutId = setTimeout(() => {
+        closeRoastModal();
+      }, 5000);
+    }
+
+    function closeRoastModal() {
+      clearAllTimers();
+      const modal = document.getElementById('roastModal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    function clearAllTimers() {
+      if (roastTimeoutId) {
+        clearTimeout(roastTimeoutId);
+        roastTimeoutId = null;
+      }
+      if (roastCountdownIntervalId) {
+        clearInterval(roastCountdownIntervalId);
+        roastCountdownIntervalId = null;
+      }
+      if (bingoTimeoutId) {
+        clearTimeout(bingoTimeoutId);
+        bingoTimeoutId = null;
+      }
+    }
+
+    // ==================== 出科结算画面彩带生成器 ====================
+    function spawnConfetti() {
+      const container = document.getElementById('confettiContainer');
+      container.innerHTML = '';
+      const shapes = ['🎉', '✨', '🌸', '⭐', '💊', '🏆', '💖'];
+
+      for (let i = 0; i < 22; i++) {
+        const el = document.createElement('div');
+        el.className = 'confetti-piece text-2xl md:text-3xl';
+        el.textContent = shapes[i % shapes.length];
+        el.style.left = `${Math.random() * 94 + 2}%`;
+        el.style.animationDelay = `${Math.random() * 2.5}s`;
+        el.style.animationDuration = `${3.2 + Math.random() * 2}s`;
+        container.appendChild(el);
+      }
+    }
+  </script>
+</body>
+</html>
